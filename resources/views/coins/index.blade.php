@@ -11,6 +11,7 @@
             <th>#</th>
             <th>Short name</th>
             <th>Name</th>
+            <th>Options</th>
         </tr>
     </thead>
     <tbody>
@@ -19,6 +20,15 @@
             <td>{{ $item->id }}</td>
             <td>{{ $item->short_name }}</td>
             <td>{{ $item->name }}</td>
+            <td>
+                <a href="/coins/{{ $item->id }}/edit">Edit</a>
+                <form action="/coins/{{ $item->id }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button>Delete</button>
+                </form>
+                <a href="/coins/{{ $item->id }}">Info</a>
+            </td>
         </tr>
         @endforeach
     </tbody>

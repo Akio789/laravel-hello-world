@@ -53,7 +53,8 @@ class CoinsController extends Controller
      */
     public function show($id)
     {
-        //
+        $coin = Coin::find($id);
+        return view('coins.info', ['coin' => $coin]);
     }
 
     /**
@@ -64,7 +65,7 @@ class CoinsController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('coins.edit', ['id' => $id]);
     }
 
     /**
@@ -76,7 +77,12 @@ class CoinsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $arr = $request->input();
+        $coin = Coin::find($id);
+        $coin->short_name = $arr['short_name'];
+        $coin->name = $arr['name'];
+        $coin->save();
+        return redirect()->route('coins.index');
     }
 
     /**
@@ -87,6 +93,7 @@ class CoinsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Coin::destroy($id);
+        return redirect()->route('coins.index');
     }
 }
