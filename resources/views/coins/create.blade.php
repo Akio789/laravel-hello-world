@@ -1,3 +1,6 @@
+@extends('layouts.main')
+
+@section('content')
 <h1>Create your coin here</h1>
 <form action="{{ route('coins.store') }}" method="POST">
     @csrf
@@ -13,3 +16,4 @@
         <input type="submit" value="Store">
     </div>
 </form>
+@endsection
