@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Coin;
+use App\Jobs\CoinCalculator;
 
 class CoinsController extends Controller
 {
@@ -42,6 +43,9 @@ class CoinsController extends Controller
         $coin->short_name = $arr['short_name'];
         $coin->name = $arr['name'];
         $coin->save();
+
+        CoinCalculator::dispatch();
+
         return redirect()->route('coins.index');
     }
 
