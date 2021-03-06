@@ -50,7 +50,6 @@ class AuthController extends Controller
     public function logout(Request $request)
     {
         Auth::logout();
-        // TODO: ADD TO PROJECT
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect()->route('coins.index');
